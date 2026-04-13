@@ -38,7 +38,7 @@ External: Neon PostgreSQL, Upstash Redis, Cloudinary, OpenAI, Tavily, Stack Auth
 
 ### After (DigitalOcean + Coolify)
 ```
-User → Cloudflare (SSL + CDN) → DigitalOcean VPS (159.223.173.17)
+User → Cloudflare (SSL + CDN) → DigitalOcean VPS (<DROPLET_IP>)
   → Traefik reverse proxy (port 80/443)
     → web container (Next.js, port 3000)
     → agent container (LangGraph, port 8123)
