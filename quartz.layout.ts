@@ -9,6 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/ChanMeng666",
+      LinkedIn: "https://www.linkedin.com/in/chanmeng666/",
     },
   }),
 }
@@ -37,12 +38,39 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      folderDefaultState: "open",
+      folderClickBehavior: "collapse",
+      useSavedState: true,
+    }),
   ],
   right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    Component.Graph({
+      localGraph: {
+        depth: 1,
+        scale: 1.1,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 3,
+        showTags: false,
+        focusOnHover: true,
+      },
+      globalGraph: {
+        depth: -1,
+        scale: 0.9,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 3,
+        showTags: true,
+        focusOnHover: true,
+      },
+    }),
+    Component.DesktopOnly(Component.TableOfContents({ layout: "modern" })),
+    Component.Backlinks({ hideWhenEmpty: true }),
   ],
 }
 
@@ -61,7 +89,11 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      folderDefaultState: "open",
+      folderClickBehavior: "collapse",
+      useSavedState: true,
+    }),
   ],
   right: [],
 }

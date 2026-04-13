@@ -1,3 +1,74 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// === Homepage subtitle (blockquote as intro) ===
+.page[data-slug="index"] > .center > article > blockquote:first-child {
+  border-left: none;
+  padding: 0;
+  margin: -0.5rem 0 2rem 0;
+  font-size: 1.15rem;
+  color: var(--gray);
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+// === Homepage section dividers ===
+.page[data-slug="index"] > .center > article > h2 {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lightgray);
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+// === Code blocks: rounded corners + border ===
+pre {
+  border-radius: 8px !important;
+  border: 1px solid var(--lightgray);
+}
+
+// === Inline code ===
+code:not(pre > code) {
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+  font-size: 0.9em;
+}
+
+// === Link hover transition ===
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+// === Explorer folder icon transition ===
+.explorer ul > li > .folder-container > svg {
+  transition: transform 0.15s ease;
+}
+
+// === Tag pills ===
+a.internal.tag-link {
+  border-radius: 9999px;
+  padding: 0.2em 0.6em;
+  font-size: 0.85em;
+}
+
+// === Sidebar section headers ===
+.right .toc > h3,
+.right .graph > h3,
+.right .backlinks > h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+// === Footer: subtle until hovered ===
+footer {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -2,14 +2,18 @@
 title: Chan Meng's Knowledge Base
 ---
 
-Welcome to my knowledge base. Use the explorer on the left or the search function to browse.
+> A curated collection of technical notes, migration guides, and knowledge clippings.
 
 ## Technical Docs
 
+Hands-on guides and reference documentation from real-world projects.
+
 - [[MIGRATION_RAILWAY_TO_DIGITALOCEAN|Migration Guide: Railway to DigitalOcean]]
-- [[Claude Code 跳过权限确认配置]]
+- [[Claude Code 跳过权限确认配置|Claude Code Permission Configuration]]
 
 ## Clippings
 
-- [[How I Built a Content Operating System With Claude Code (Technical Breakdown)]]
-- [[LLM Knowledge Bases by @karpathy]]
+Noteworthy articles and threads worth revisiting.
+
+- [[How I Built a Content Operating System With Claude Code (Technical Breakdown)|Building a Content OS with Claude Code]]
+- [[LLM Knowledge Bases by @karpathy|LLM Knowledge Bases — Andrej Karpathy]]
