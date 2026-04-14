@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/static/chan_logo.svg" alt="Chan Meng Logo" width="120" />
+  <img src="quartz/static/chan_logo.svg" alt="Chan Meng Logo" width="120" />
 </p>
 
 <h1 align="center">Chan Meng's Knowledge Base</h1>
