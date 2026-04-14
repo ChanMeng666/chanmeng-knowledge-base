@@ -61,4 +61,4 @@ Noteworthy articles and threads worth revisiting.
 
 Quick references for development tools.
 
-- [[Claude Code 跳过权限确认配置|Claude Code Permission Configuration]]
+- [[Claude Code Skip Permission Confirmation|Claude Code Permission Configuration]]

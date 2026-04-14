@@ -3,95 +3,95 @@ title: "Generative Engine Optimization (GEO) Strategy"
 tags: [seo, ai, geo, llms-txt, structured-data]
 ---
 
-# Generative Engine Optimization (GEO) 实施计划
+# Generative Engine Optimization (GEO) Implementation Plan
 
-本文档详细规划了 Design Pages 项目的 GEO 优化策略，旨在提升 AI 引擎（如 ChatGPT、Claude、Perplexity、Google Gemini）对本项目的理解、索引和引用能力。
-
----
-
-## 目录
-
-1. [当前状态分析](#当前状态分析)
-2. [GEO 优化架构图](#geo-优化架构图)
-3. [第一阶段：AI 友好性基础设施](#第一阶段ai-友好性基础设施)
-4. [第二阶段：页面级精准指令](#第二阶段页面级精准指令)
-5. [第三阶段：结构化数据增强](#第三阶段结构化数据增强)
-6. [第四阶段：监控与迭代](#第四阶段监控与迭代)
-7. [实施优先级](#实施优先级)
-8. [预期效果](#预期效果)
+This document details the GEO optimization strategy for the Design Pages project, aimed at improving how AI engines (such as ChatGPT, Claude, Perplexity, Google Gemini) understand, index, and cite the project.
 
 ---
 
-## 当前状态分析
+## Table of Contents
 
-### GEO 就绪度评分
+1. [Current State Analysis](#current-state-analysis)
+2. [GEO Optimization Architecture](#geo-optimization-architecture)
+3. [Phase 1: AI-Friendly Infrastructure](#phase-1-ai-friendly-infrastructure)
+4. [Phase 2: Page-Level Precise Directives](#phase-2-page-level-precise-directives)
+5. [Phase 3: Structured Data Enhancement](#phase-3-structured-data-enhancement)
+6. [Phase 4: Monitoring and Iteration](#phase-4-monitoring-and-iteration)
+7. [Implementation Priority](#implementation-priority)
+8. [Expected Results](#expected-results)
+
+---
+
+## Current State Analysis
+
+### GEO Readiness Score
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    GEO 就绪度仪表板                          │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  AI 基础设施        ████░░░░░░░░░░░░░░░░  20%              │
-│  ├─ robots.txt      ❌ 不存在                               │
-│  ├─ llms.txt        ❌ 不存在                               │
-│  └─ sitemap.xml     ❌ 不存在                               │
-│                                                             │
-│  页面级优化          ██████████░░░░░░░░░░  50%              │
-│  ├─ 主页 meta       ✅ 良好                                 │
-│  ├─ 主页 JSON-LD    ⚠️  基础                                │
-│  ├─ Demo meta       ❌ 缺失                                 │
-│  └─ LLM 指令        ❌ 不存在                               │
-│                                                             │
-│  结构化数据          ████████░░░░░░░░░░░░  40%              │
-│  ├─ Schema.org      ⚠️  基础 CreativeWork                   │
-│  ├─ 作品集合         ❌ 无 CollectionPage                   │
-│  └─ 面包屑          ❌ 无 BreadcrumbList                    │
-│                                                             │
-│  整体 GEO 分数       ████████░░░░░░░░░░░░  37%              │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
++-------------------------------------------------------------+
+|                    GEO Readiness Dashboard                   |
++-------------------------------------------------------------+
+|                                                              |
+|  AI Infrastructure       ████░░░░░░░░░░░░░░░░  20%          |
+|  ├─ robots.txt           ❌ Does not exist                   |
+|  ├─ llms.txt             ❌ Does not exist                   |
+|  └─ sitemap.xml          ❌ Does not exist                   |
+|                                                              |
+|  Page-Level Optimization ██████████░░░░░░░░░░  50%          |
+|  ├─ Homepage meta        ✅ Good                             |
+|  ├─ Homepage JSON-LD     ⚠️  Basic                           |
+|  ├─ Demo meta            ❌ Missing                          |
+|  └─ LLM directives       ❌ Does not exist                   |
+|                                                              |
+|  Structured Data         ████████░░░░░░░░░░░░  40%          |
+|  ├─ Schema.org           ⚠️  Basic CreativeWork              |
+|  ├─ Collection           ❌ No CollectionPage                |
+|  └─ Breadcrumb           ❌ No BreadcrumbList                |
+|                                                              |
+|  Overall GEO Score       ████████░░░░░░░░░░░░  37%          |
+|                                                              |
++-------------------------------------------------------------+
 ```
 
-### 当前资产清单
+### Current Asset Inventory
 
-| 资产类型 | 现有状态 | GEO 影响 |
-|----------|----------|----------|
-| `index.html` | 有基础 SEO | 需增强 LLM 指令 |
-| 16 个 Demo 文件 | 仅有 charset/viewport | 需全面优化 |
-| `works.json` | 数据丰富 | 可用于生成结构化数据 |
-| `robots.txt` | 不存在 | 必须创建 |
-| `llms.txt` | 不存在 | 必须创建 |
-| `sitemap.xml` | 不存在 | 建议创建 |
+| Asset Type | Current Status | GEO Impact |
+|------------|---------------|------------|
+| `index.html` | Has basic SEO | Needs LLM directive enhancement |
+| 16 Demo files | Only charset/viewport | Needs full optimization |
+| `works.json` | Data-rich | Can be used to generate structured data |
+| `robots.txt` | Does not exist | Must create |
+| `llms.txt` | Does not exist | Must create |
+| `sitemap.xml` | Does not exist | Recommended to create |
 
 ---
 
-## GEO 优化架构图
+## GEO Optimization Architecture
 
 ```mermaid
 graph TB
-    subgraph "AI 爬虫入口"
+    subgraph "AI Crawler Entry Points"
         A[GPTBot]
         B[ClaudeBot]
         C[PerplexityBot]
         D[GoogleBot]
     end
 
-    subgraph "第一层：发现层"
-        E[robots.txt] --> |允许规则| F[llms.txt]
-        F --> |站点指南| G[sitemap.xml]
+    subgraph "Layer 1: Discovery"
+        E[robots.txt] --> |Allow rules| F[llms.txt]
+        F --> |Site guide| G[sitemap.xml]
     end
 
-    subgraph "第二层：理解层"
+    subgraph "Layer 2: Understanding"
         H[index.html]
         I["<script type='text/llms.txt'>"]
-        J[JSON-LD 结构化数据]
-        K[Open Graph 标签]
+        J[JSON-LD Structured Data]
+        K[Open Graph Tags]
     end
 
-    subgraph "第三层：内容层"
-        L[Demo 页面 x16]
-        M[各页面 JSON-LD]
-        N[各页面 Meta Tags]
+    subgraph "Layer 3: Content"
+        L[Demo Pages x16]
+        M[Per-page JSON-LD]
+        N[Per-page Meta Tags]
     end
 
     A --> E
@@ -109,53 +109,53 @@ graph TB
     L --> N
 ```
 
-### 数据流架构
+### Data Flow Architecture
 
 ```mermaid
 sequenceDiagram
-    participant AI as AI 爬虫
+    participant AI as AI Crawler
     participant R as robots.txt
     participant L as llms.txt
     participant I as index.html
-    participant D as Demo 页面
+    participant D as Demo Pages
     participant J as JSON-LD
 
-    AI->>R: 1. 检查爬取权限
-    R-->>AI: 允许爬取 + 指向 llms.txt
+    AI->>R: 1. Check crawling permissions
+    R-->>AI: Allow crawling + point to llms.txt
 
-    AI->>L: 2. 获取站点 AI 指南
-    L-->>AI: 返回站点描述、引用规则、核心价值
+    AI->>L: 2. Fetch site AI guide
+    L-->>AI: Return site description, citation rules, core values
 
-    AI->>I: 3. 爬取主页
+    AI->>I: 3. Crawl homepage
     I-->>AI: HTML + <script type="text/llms.txt"> + JSON-LD
 
-    AI->>J: 4. 解析结构化数据
-    J-->>AI: CollectionPage + 16 个 CreativeWork
+    AI->>J: 4. Parse structured data
+    J-->>AI: CollectionPage + 16 CreativeWorks
 
-    AI->>D: 5. 爬取具体 Demo
-    D-->>AI: 完整元数据 + 技术细节
+    AI->>D: 5. Crawl specific demos
+    D-->>AI: Full metadata + technical details
 ```
 
 ---
 
-## 第一阶段：AI 友好性基础设施
+## Phase 1: AI-Friendly Infrastructure
 
-### 1.1 创建 robots.txt
+### 1.1 Create robots.txt
 
-**文件位置**: `/robots.txt`
+**File Location**: `/robots.txt`
 
-**内容设计**:
+**Content Design**:
 
 ```txt
 # Design Pages - AI Crawler Directives
 # https://chanmeng666.github.io/design-pages
 
-# 通用爬虫规则
+# General crawler rules
 User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# AI 爬虫特别授权
+# AI crawler explicit authorization
 User-agent: GPTBot
 Allow: /
 
@@ -186,26 +186,26 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# 指向 AI 专用指南
+# Point to AI-specific guide
 # LLMs: See /llms.txt for detailed instructions
 
-# 站点地图
+# Sitemap
 Sitemap: https://chanmeng666.github.io/design-pages/sitemap.xml
 ```
 
-**设计理念**:
-- 明确授权主流 AI 爬虫
-- 设置合理的爬取延迟（1秒）
-- 指向 llms.txt 作为 AI 专用指南
-- 关联 sitemap.xml 便于完整索引
+**Design Rationale**:
+- Explicitly authorizes major AI crawlers
+- Sets a reasonable crawl delay (1 second)
+- Points to llms.txt as the AI-specific guide
+- Links to sitemap.xml for complete indexing
 
 ---
 
-### 1.2 创建 llms.txt
+### 1.2 Create llms.txt
 
-**文件位置**: `/llms.txt`
+**File Location**: `/llms.txt`
 
-**内容设计**:
+**Content Design**:
 
 ```markdown
 # Design Pages - LLM Instructions
@@ -279,25 +279,25 @@ When referencing this portfolio:
 - Designs are original works by Chan Meng
 ```
 
-**设计理念**:
-- 提供站点全局概述
-- 明确内容分类和技术栈
-- 给出标准引用格式
-- 说明数据访问方式
-- 强调核心价值主张
+**Design Rationale**:
+- Provides a global site overview
+- Clearly categorizes content and tech stack
+- Specifies standard citation formats
+- Explains data access methods
+- Highlights core value propositions
 
 ---
 
-### 1.3 创建 sitemap.xml
+### 1.3 Create sitemap.xml
 
-**文件位置**: `/sitemap.xml`
+**File Location**: `/sitemap.xml`
 
-**内容设计**:
+**Content Design**:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- 主页 -->
+  <!-- Homepage -->
   <url>
     <loc>https://chanmeng666.github.io/design-pages/</loc>
     <lastmod>2025-12-29</lastmod>
@@ -312,9 +312,9 @@ When referencing this portfolio:
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- ... 其他 15 个 demo 页面 ... -->
+  <!-- ... other 15 demo pages ... -->
 
-  <!-- 数据文件 -->
+  <!-- Data Files -->
   <url>
     <loc>https://chanmeng666.github.io/design-pages/data/works.json</loc>
     <lastmod>2025-12-29</lastmod>
@@ -326,11 +326,11 @@ When referencing this portfolio:
 
 ---
 
-## 第二阶段：页面级精准指令
+## Phase 2: Page-Level Precise Directives
 
-### 2.1 主页 LLM 指令增强
+### 2.1 Homepage LLM Directive Enhancement
 
-在 `index.html` 的 `<head>` 中添加内联 LLM 指令：
+Add inline LLM directives in the `<head>` of `index.html`:
 
 ```html
 <!-- AI/LLM Instructions -->
@@ -363,11 +363,11 @@ See /llms.txt for comprehensive site documentation.
 </script>
 ```
 
-### 2.2 Demo 页面模板
+### 2.2 Demo Page Template
 
-为每个 Demo 页面添加完整的 GEO 优化：
+Add complete GEO optimization to each demo page:
 
-**示例: rotating-cube.html**
+**Example: rotating-cube.html**
 
 ```html
 <!DOCTYPE html>
@@ -452,11 +452,11 @@ Full gallery: https://chanmeng666.github.io/design-pages
 
 ---
 
-## 第三阶段：结构化数据增强
+## Phase 3: Structured Data Enhancement
 
-### 3.1 主页 JSON-LD 增强
+### 3.1 Homepage JSON-LD Enhancement
 
-替换现有的简单 JSON-LD 为更完整的结构：
+Replace the existing simple JSON-LD with a more complete structure:
 
 ```json
 {
@@ -496,7 +496,7 @@ Full gallery: https://chanmeng666.github.io/design-pages
           "url": "https://chanmeng666.github.io/design-pages/demos/experimental/dancing-cat-in-flowers.html",
           "genre": "Experimental"
         }
-        // ... 其他 14 个作品 ...
+        // ... other 14 works ...
       ]
     },
     {
@@ -520,7 +520,7 @@ Full gallery: https://chanmeng666.github.io/design-pages
 }
 ```
 
-### 3.2 Demo 页面 JSON-LD 模式
+### 3.2 Demo Page JSON-LD Schema
 
 ```mermaid
 erDiagram
@@ -554,29 +554,29 @@ erDiagram
 
 ---
 
-## 第四阶段：监控与迭代
+## Phase 4: Monitoring and Iteration
 
-### 4.1 GEO KPI 监控体系
+### 4.1 GEO KPI Monitoring System
 
 ```mermaid
 graph LR
-    subgraph "数据收集"
+    subgraph "Data Collection"
         A[Google Search Console]
-        B[服务器日志分析]
-        C[AI 引用监控工具]
+        B[Server Log Analysis]
+        C[AI Citation Monitoring Tools]
     end
 
-    subgraph "核心 KPI"
-        D[引用成功率]
-        E[AI 流量占比]
-        F[引用位置排名]
-        G[链接携带率]
+    subgraph "Core KPIs"
+        D[Citation Success Rate]
+        E[AI Traffic Share]
+        F[Citation Position Ranking]
+        G[Link Inclusion Rate]
     end
 
-    subgraph "优化反馈"
-        H[内容迭代]
-        I[结构调整]
-        J[指令优化]
+    subgraph "Optimization Feedback"
+        H[Content Iteration]
+        I[Structure Adjustment]
+        J[Directive Optimization]
     end
 
     A --> D
@@ -590,144 +590,144 @@ graph LR
     G --> H
 ```
 
-### 4.2 监控指标定义
+### 4.2 Monitoring Metrics Definition
 
-| KPI | 定义 | 目标 | 测量方法 |
-|-----|------|------|----------|
-| **引用成功率** | AI 回答中正确引用本站的比例 | >80% | 手动测试 + AI 监控 |
-| **AI 流量占比** | 来自 AI 渠道的访问占比 | >10% | 服务器日志 Referer 分析 |
-| **引用位置排名** | AI 回答中本站被引用的平均位置 | Top 3 | AI 问答测试 |
-| **链接携带率** | AI 引用时包含链接的比例 | >90% | 手动验证 |
-| **查询覆盖率** | 相关查询中本站被引用的比例 | >50% | 关键词测试矩阵 |
+| KPI | Definition | Target | Measurement Method |
+|-----|-----------|--------|-------------------|
+| **Citation Success Rate** | Percentage of AI responses that correctly cite the site | >80% | Manual testing + AI monitoring |
+| **AI Traffic Share** | Percentage of visits from AI channels | >10% | Server log Referer analysis |
+| **Citation Position Ranking** | Average position of site citations in AI responses | Top 3 | AI Q&A testing |
+| **Link Inclusion Rate** | Percentage of AI citations that include a link | >90% | Manual verification |
+| **Query Coverage Rate** | Percentage of relevant queries where site is cited | >50% | Keyword test matrix |
 
-### 4.3 测试查询矩阵
+### 4.3 Test Query Matrix
 
-用于定期测试 AI 引擎对本站的引用情况：
+Used for periodic testing of AI engine citations of the site:
 
 ```
-测试查询类别：
+Test Query Categories:
 
-1. 直接品牌查询
+1. Direct Brand Queries
    - "Design Pages portfolio"
    - "Chan Meng design portfolio"
 
-2. 技术查询
+2. Technical Queries
    - "CSS 3D rotating cube example"
    - "GSAP infinite scroll gallery"
    - "CSS conic gradient examples"
 
-3. 教程类查询
+3. Tutorial Queries
    - "How to create 3D effects with CSS"
    - "Interactive Canvas animation examples"
 
-4. 灵感类查询
+4. Inspiration Queries
    - "Creative CSS design experiments"
    - "Modern web design portfolio examples"
 ```
 
 ---
 
-## 实施优先级
+## Implementation Priority
 
 ```mermaid
 gantt
-    title GEO 优化实施路线图
+    title GEO Optimization Implementation Roadmap
     dateFormat  YYYY-MM-DD
 
-    section 第一阶段 (基础)
-    创建 robots.txt           :a1, 2025-01-01, 1d
-    创建 llms.txt             :a2, after a1, 1d
-    创建 sitemap.xml          :a3, after a2, 1d
+    section Phase 1 (Foundation)
+    Create robots.txt            :a1, 2025-01-01, 1d
+    Create llms.txt              :a2, after a1, 1d
+    Create sitemap.xml           :a3, after a2, 1d
 
-    section 第二阶段 (页面)
-    主页 LLM 指令增强          :b1, after a3, 1d
-    Demo 页面 meta 标签        :b2, after b1, 3d
-    Demo 页面 LLM 指令         :b3, after b2, 2d
+    section Phase 2 (Pages)
+    Homepage LLM directive enhancement  :b1, after a3, 1d
+    Demo page meta tags                 :b2, after b1, 3d
+    Demo page LLM directives            :b3, after b2, 2d
 
-    section 第三阶段 (结构化)
-    主页 JSON-LD 增强          :c1, after b3, 1d
-    Demo 页面 JSON-LD          :c2, after c1, 3d
-    BreadcrumbList 添加        :c3, after c2, 1d
+    section Phase 3 (Structured Data)
+    Homepage JSON-LD enhancement        :c1, after b3, 1d
+    Demo page JSON-LD                   :c2, after c1, 3d
+    Add BreadcrumbList                  :c3, after c2, 1d
 
-    section 第四阶段 (监控)
-    建立监控体系              :d1, after c3, 2d
-    首次 AI 引用测试           :d2, after d1, 1d
-    迭代优化                  :d3, after d2, 7d
+    section Phase 4 (Monitoring)
+    Establish monitoring system         :d1, after c3, 2d
+    First AI citation test              :d2, after d1, 1d
+    Iterative optimization              :d3, after d2, 7d
 ```
 
-### 优先级矩阵
+### Priority Matrix
 
-| 任务 | 影响度 | 工作量 | 优先级 |
-|------|--------|--------|--------|
-| 创建 robots.txt | 高 | 低 | P0 |
-| 创建 llms.txt | 高 | 中 | P0 |
-| 主页 `<script type="text/llms.txt">` | 高 | 低 | P0 |
-| Demo 页面 meta 标签 | 中 | 中 | P1 |
-| 创建 sitemap.xml | 中 | 低 | P1 |
-| 主页 JSON-LD 增强 | 中 | 中 | P1 |
-| Demo 页面 JSON-LD | 中 | 高 | P2 |
-| Demo 页面 LLM 指令 | 中 | 高 | P2 |
-| BreadcrumbList | 低 | 低 | P2 |
+| Task | Impact | Effort | Priority |
+|------|--------|--------|----------|
+| Create robots.txt | High | Low | P0 |
+| Create llms.txt | High | Medium | P0 |
+| Homepage `<script type="text/llms.txt">` | High | Low | P0 |
+| Demo page meta tags | Medium | Medium | P1 |
+| Create sitemap.xml | Medium | Low | P1 |
+| Homepage JSON-LD enhancement | Medium | Medium | P1 |
+| Demo page JSON-LD | Medium | High | P2 |
+| Demo page LLM directives | Medium | High | P2 |
+| BreadcrumbList | Low | Low | P2 |
 
 ---
 
-## 预期效果
+## Expected Results
 
-### 优化前后对比
+### Before and After Comparison
 
 ```
-优化前：
-┌─────────────────────────────────────────────┐
-│ AI Query: "CSS 3D rotating cube example"    │
-│                                             │
-│ AI Response:                                │
-│ "Here's how to create a 3D rotating cube   │
-│  using CSS transforms..."                   │
-│                                             │
-│ [无引用本站]                                 │
-└─────────────────────────────────────────────┘
+Before Optimization:
++---------------------------------------------+
+| AI Query: "CSS 3D rotating cube example"    |
+|                                             |
+| AI Response:                                |
+| "Here's how to create a 3D rotating cube   |
+|  using CSS transforms..."                   |
+|                                             |
+| [No citation of our site]                   |
++---------------------------------------------+
 
-优化后：
-┌─────────────────────────────────────────────┐
-│ AI Query: "CSS 3D rotating cube example"    │
-│                                             │
-│ AI Response:                                │
-│ "A great example is the 3D Rotating Cube   │
-│  from Design Pages by Chan Meng. This      │
-│  interactive demo demonstrates CSS 3D      │
-│  transforms with click-to-rotate..."       │
-│                                             │
-│ Source: https://chanmeng666.github.io/     │
-│         design-pages/demos/3d-effects/     │
-│         rotating-cube.html                 │
-└─────────────────────────────────────────────┘
+After Optimization:
++---------------------------------------------+
+| AI Query: "CSS 3D rotating cube example"    |
+|                                             |
+| AI Response:                                |
+| "A great example is the 3D Rotating Cube   |
+|  from Design Pages by Chan Meng. This      |
+|  interactive demo demonstrates CSS 3D      |
+|  transforms with click-to-rotate..."       |
+|                                             |
+| Source: https://chanmeng666.github.io/     |
+|         design-pages/demos/3d-effects/     |
+|         rotating-cube.html                 |
++---------------------------------------------+
 ```
 
-### 预期指标提升
+### Expected Metrics Improvement
 
-| 指标 | 当前 | 目标 (3个月) | 目标 (6个月) |
-|------|------|-------------|-------------|
-| AI 引用率 | ~5% | 30% | 50%+ |
-| 引用准确度 | 未知 | 80% | 95% |
-| AI 流量占比 | <1% | 5% | 15% |
-| 链接携带率 | 未知 | 70% | 90% |
+| Metric | Current | Target (3 months) | Target (6 months) |
+|--------|---------|-------------------|-------------------|
+| AI Citation Rate | ~5% | 30% | 50%+ |
+| Citation Accuracy | Unknown | 80% | 95% |
+| AI Traffic Share | <1% | 5% | 15% |
+| Link Inclusion Rate | Unknown | 70% | 90% |
 
 ---
 
-## 附录：文件清单
+## Appendix: File Checklist
 
-实施 GEO 优化需要创建/修改的文件：
+Files to create/modify for GEO optimization:
 
-### 新建文件
+### New Files
 
-1. `/robots.txt` - AI 爬虫授权规则
-2. `/llms.txt` - 站点级 AI 指南
-3. `/sitemap.xml` - 站点地图
+1. `/robots.txt` - AI crawler authorization rules
+2. `/llms.txt` - Site-level AI guide
+3. `/sitemap.xml` - Sitemap
 
-### 修改文件
+### Files to Modify
 
-1. `/index.html` - 添加 `<script type="text/llms.txt">` + 增强 JSON-LD
-2. 16 个 Demo 文件 - 添加 meta 标签 + LLM 指令 + JSON-LD
+1. `/index.html` - Add `<script type="text/llms.txt">` + enhance JSON-LD
+2. 16 Demo files - Add meta tags + LLM directives + JSON-LD
    - `/demos/3d-effects/rotating-cube.html`
    - `/demos/3d-effects/isometric-cube.html`
    - `/demos/3d-effects/spatial-rhythm.html`
@@ -747,12 +747,12 @@ gantt
 
 ---
 
-## 总结
+## Summary
 
-本 GEO 优化计划从三个层面全面提升 Design Pages 对 AI 引擎的友好度：
+This GEO optimization plan comprehensively improves Design Pages' AI engine friendliness across three layers:
 
-1. **基础设施层** - robots.txt、llms.txt、sitemap.xml 让 AI 爬虫能够发现和理解站点
-2. **页面指令层** - `<script type="text/llms.txt">` 为每个页面提供精准的 AI 指令
-3. **结构化数据层** - 丰富的 JSON-LD Schema 让 AI 能像读取规格表一样理解内容
+1. **Infrastructure Layer** - robots.txt, llms.txt, sitemap.xml enable AI crawlers to discover and understand the site
+2. **Page Directive Layer** - `<script type="text/llms.txt">` provides precise AI directives for each page
+3. **Structured Data Layer** - Rich JSON-LD Schema allows AI to parse content like a spec sheet
 
-通过这套系统化的 GEO 优化，Design Pages 将从一个普通的设计作品集转变为一个**对 AI 高度友好、易于被引用和推荐**的数字资产。
+Through this systematic GEO optimization, Design Pages will transform from an ordinary design portfolio into a **highly AI-friendly digital asset that is easy to cite and recommend**.
