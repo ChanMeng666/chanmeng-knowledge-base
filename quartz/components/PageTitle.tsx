@@ -1,4 +1,4 @@
-import { pathToRoot } from "../util/path"
+import { joinSegments, pathToRoot } from "../util/path"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 import { i18n } from "../i18n"
@@ -6,9 +6,13 @@ import { i18n } from "../i18n"
 const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzComponentProps) => {
   const title = cfg?.pageTitle ?? i18n(cfg.locale).propertyDefaults.title
   const baseDir = pathToRoot(fileData.slug!)
+  const logoPath = joinSegments(baseDir, "static/chan_logo.svg")
   return (
     <h2 class={classNames(displayClass, "page-title")}>
-      <a href={baseDir}>{title}</a>
+      <a href={baseDir}>
+        <img class="page-title-logo" src={logoPath} alt="Chan Meng" />
+        {title}
+      </a>
     </h2>
   )
 }
@@ -18,6 +22,21 @@ PageTitle.css = `
   font-size: 1.75rem;
   margin: 0;
   font-family: var(--titleFont);
+}
+
+.page-title a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page-title-logo {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+:root[saved-theme="dark"] .page-title-logo {
+  filter: invert(1);
 }
 `
 
